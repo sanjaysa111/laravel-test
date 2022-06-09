@@ -21,3 +21,11 @@
     </div>
 </div>
 @endsection
+
+@push('script')
+<script>
+    $validate = Validator::make(Input::all(), [
+        'g-recaptcha-response' => 'required|captcha'
+    ]);
+</script>
+@endpush

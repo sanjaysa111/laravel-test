@@ -30,6 +30,6 @@ class UserController extends Controller
                     'dob' => $request->dob,
                 ]);
 
-        return redirect()->back();
+        return redirect()->route('home');
     }
 }
