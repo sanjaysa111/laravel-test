@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -20,7 +22,12 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
-
-Route::get('/user', [UserController::class, 'getUserProfile'])->name('get.user.profile');
-Route::post('/user', [UserController::class, 'updateUserProfile'])->name('update.user.profile');
+Route::group( ['middleware' => ['auth', 'verified']], function() {
+ 
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    
+    Route::get('/user', [UserController::class, 'getUserProfile'])->name('get.user.profile');
+    Route::post('/user', [UserController::class, 'updateUserProfile'])->name('update.user.profile');
+    
+    Route::get('/blog', [BlogController::class, 'getBlog'])->name('get.blog');
+});

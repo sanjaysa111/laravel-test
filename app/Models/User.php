@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Blog;
 use Illuminate\Support\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -43,5 +44,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getdobAttribute($date)
     {
         return date("Y-m-d", strtotime($date));
+    }
+
+    public function blogs()
+    {
+        return $this->hasMany(Blog::class);
     }
 }
