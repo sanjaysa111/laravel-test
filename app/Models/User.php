@@ -4,6 +4,9 @@ namespace App\Models;
 
 use App\Models\Blog;
 use Illuminate\Support\Carbon;
+use App\Jobs\SendVerifyEmailJob;
+use App\Jobs\QueuedVerifyEmailJob;
+use App\Notifications\VerifyEmailQueued;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -49,5 +52,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function blogs()
     {
         return $this->hasMany(Blog::class);
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        QueuedVerifyEmailJob::dispatch($this);
     }
 }

@@ -26,11 +26,11 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                @if(auth()->id())
-                <a class="navbar-brand" href="{{ route('get.blog') }}">
-                   Blog
-                </a>
-                @endif
+                
+                    <a class="navbar-brand" href="{{ route('get.blog') }}">
+                    Blog
+                    </a>
+                
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -64,9 +64,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                
                                     <a class="dropdown-item" href="{{ route('get.user.profile') }}">
-                                        {{ __('Profile') }}
+                                        Profile
                                     </a>
+                                
 
                                     
                                     <a class="dropdown-item" href="{{ route('logout') }}"
